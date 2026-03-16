@@ -1,8 +1,10 @@
 name: BioPulse News Auto-Update
 on:
   schedule:
-    - cron: '0 */1 * * *' # 3시간마다 실행
-  workflow_dispatch: # 수동 실행 버튼
+    # '0 * * * *' 대신 '15 * * * *'를 추천합니다. 
+    # 정시(0분)에는 전 세계 로봇이 몰려 딜레이가 생길 수 있거든요.
+    - cron: '15 * * * *' 
+  workflow_dispatch:
 
 jobs:
   update:
