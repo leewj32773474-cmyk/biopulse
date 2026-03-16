@@ -8,24 +8,22 @@ jobs:
   update:
     runs-on: ubuntu-latest
     env:
-      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true # 노드 24 경고 해결
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.9'
+          python-version: '3.10' # 3.9에서 3.10으로 업그레이드
       - name: Install dependencies
         run: |
-          pip install requests google-generativeai
+          pip install requests google-genai # 새 라이브러리(google-genai) 설치
       - name: Run AI Analysis
         env:
           GNEWS_API_KEY: ${{ secrets.GNEWS_API_KEY }}
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: python update_news.py
-      - name: Check file existence
-        run: ls -l news.json # 파일이 진짜 만들어졌는지 확인
       - name: Commit and Push
         run: |
           git config --global user.name "BioPulse-AI-Bot"
