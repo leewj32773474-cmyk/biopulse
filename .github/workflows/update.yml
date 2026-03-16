@@ -1,16 +1,17 @@
 name: BioPulse AI Auto-Update
 on:
   schedule:
-    - cron: '15 * * * *' # 매시 15분마다 실행
+    - cron: '15 * * * *' 
   workflow_dispatch:
 
 jobs:
   update:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout Repository
+        uses: actions/checkout@v4 # v3에서 v4로 업데이트
       - name: Set up Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5 # v4에서 v5로 업데이트
         with:
           python-version: '3.9'
       - name: Install dependencies
