@@ -1,0 +1,11 @@
+# ads.txt for biopulseglobal.com
+# 
+# 사용 방법:
+# 1. 애드센스 승인 후 아래 YOUR_PUB_ID를 실제 Publisher ID로 교체하세요
+#    (예: pub-1234567890123456)
+# 2. 이 파일을 GitHub 레포 루트에 위치시키면
+#    https://biopulseglobal.com/ads.txt 로 자동 서비스됩니다
+#
+# Publisher ID는 애드센스 대시보드 → 계정 → 계정 정보에서 확인 가능합니다
+
+google.com, YOUR_PUB_ID, DIRECT, f08c47fec0942fa0
