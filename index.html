@@ -19,17 +19,11 @@
             <nav class="hidden md:flex space-x-8 text-sm font-bold text-slate-500">
                 <a href="./about.html" class="hover:text-blue-600">About</a>
                 <a href="#" class="hover:text-blue-600">Clinical Trials</a>
-                <a href="#" class="hover:text-blue-600 text-blue-600 underline">Expert Insight</a>
+                <a href="#" class="hover:text-blue-600">Expert Insight</a>
             </nav>
             <button class="bg-black text-white px-4 py-2 rounded-full text-xs font-bold uppercase tracking-widest hover:bg-blue-600 transition-colors">Subscribe</button>
         </div>
     </header>
-
-    <div class="max-w-7xl mx-auto px-6 mt-6">
-        <div class="w-full h-24 bg-slate-50 border border-dashed border-slate-200 rounded-xl flex items-center justify-center text-slate-300 text-[10px] tracking-[0.2em] uppercase">
-            Advertisement - Top Leaderboard
-        </div>
-    </div>
 
     <section class="max-w-7xl mx-auto px-6 pt-20 pb-16 text-center border-b">
         <h2 class="text-6xl md:text-8xl font-black tracking-tighter mb-4">Biotech. Amplified.</h2>
@@ -48,9 +42,61 @@
             </h3>
 
             <div id="news-container" class="space-y-16">
-                <div class="animate-pulse flex space-x-4">
-                    <div class="flex-1 space-y-4 py-1">
-                        <div class="h-4 bg-slate-100 rounded w-3/4"></div>
-                        <div class="space-y-2">
-                            <div class="h-4 bg-slate-100 rounded"></div>
-                            <div class="h-4 bg-
+                <div class="animate-pulse space-y-4">
+                    <div class="h-4 bg-slate-100 rounded w-3/4"></div>
+                    <div class="h-4 bg-slate-100 rounded w-full"></div>
+                </div>
+            </div>
+        </div>
+
+        <aside class="space-y-12">
+            <div class="bg-blue-600 p-8 rounded-3xl text-white shadow-2xl">
+                <p class="text-[10px] font-black uppercase tracking-widest mb-4 opacity-70">R&D Expert Insight</p>
+                <p class="text-lg font-bold italic mb-6">"Advancing global health through innovative formulation and automated intelligence."</p>
+                <div class="flex items-center border-t border-blue-400 pt-6">
+                    <div class="w-10 h-10 bg-white rounded-full flex items-center justify-center font-black text-blue-600 mr-3">NV</div>
+                    <div>
+                        <p class="text-xs font-bold">Novarex R&D Team</p>
+                        <p class="text-[10px] opacity-60">Osong, Korea</p>
+                    </div>
+                </div>
+            </div>
+        </aside>
+    </main>
+
+    <script>
+        async function loadNews() {
+            try {
+                const response = await fetch('./news.json');
+                if (!response.ok) throw new Error('No data');
+                const data = await response.json();
+                const container = document.getElementById('news-container');
+                container.innerHTML = ''; 
+
+                data.articles.slice(0, 5).forEach(article => {
+                    const date = new Date(article.publishedAt).toLocaleDateString('en-US', {
+                        month: 'short', day: 'numeric', year: 'numeric'
+                    });
+                    
+                    container.innerHTML += `
+                        <article class="group border-b pb-12">
+                            <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-2">${date} | ${article.source.name}</p>
+                            <h4 class="text-3xl font-black tracking-tighter leading-[1.1] group-hover:text-blue-600 transition-colors cursor-pointer mb-3" onclick="window.open('${article.url}', '_blank')">
+                                ${article.title}
+                            </h4>
+                            <p class="text-slate-500 text-sm mb-6 line-clamp-2">${article.description}</p>
+                            <div class="bg-slate-50 p-6 rounded-2xl border-l-4 border-blue-600">
+                                <p class="text-[9px] font-black text-blue-600 uppercase tracking-widest mb-2">AI Expert Analysis</p>
+                                <p class="text-sm text-slate-700 italic">"${article.ai_analysis || 'Analyzing impact...'}"</p>
+                            </div>
+                        </article>
+                    `;
+                });
+            } catch (e) {
+                document.getElementById('news-container').innerHTML = '<p class="text-slate-400 font-bold">Waiting for AI bot to sync news...</p>';
+            }
+        }
+        loadNews();
+    </script>
+</body>
+</html>
