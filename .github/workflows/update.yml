@@ -1,33 +1,43 @@
-name: BioPulse AI Auto-Update
+# .github/workflows/update.yml
+# BioPulse Global — Automated News Update Workflow
+
+name: Update BioPulse News
+
 on:
   schedule:
-    - cron: '15 * * * *' 
-  workflow_dispatch:
+    - cron: '15 * * * *'   # 매시 15분 실행
+  workflow_dispatch:         # 수동 실행 버튼 활성화
 
 jobs:
   update:
     runs-on: ubuntu-latest
-    env:
-      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+    permissions:
+      contents: write        # news.json 커밋 권한
+
     steps:
-      - name: Checkout Repository
+      - name: Checkout repo
         uses: actions/checkout@v4
+
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.10' # 3.9에서 3.10으로 업그레이드
+          python-version: '3.11'
+          cache: 'pip'
+
       - name: Install dependencies
-        run: |
-          pip install requests google-genai # 새 라이브러리(google-genai) 설치
-      - name: Run AI Analysis
+        run: pip install requests google-genai
+
+      - name: Run news updater
         env:
-          GNEWS_API_KEY: ${{ secrets.GNEWS_API_KEY }}
+          GNEWS_API_KEY:  ${{ secrets.GNEWS_API_KEY }}
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: python update_news.py
-      - name: Commit and Push
+
+      - name: Commit and push news.json
         run: |
-          git config --global user.name "BioPulse-AI-Bot"
-          git config --global user.email "bot@biopulseglobal.com"
+          git config user.name  "BioPulse Bot"
+          git config user.email "bot@biopulseglobal.com"
           git add news.json
-          git commit -m "Update News with AI Analysis" || exit 0
+          # 변경사항 없으면 커밋하지 않음
+          git diff --cached --quiet || git commit -m "chore: update news $(date -u +'%Y-%m-%d %H:%M UTC')"
           git push
