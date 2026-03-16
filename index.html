@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BioPulse Global | Biotech Intelligence</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #f8fafc; }
+        .ticker-wrap { background: #0f172a; padding: 10px 0; }
+        .news-item:hover { transform: translateX(5px); transition: all 0.2s; }
+    </style>
+</head>
+<body>
+
+    <div class="ticker-wrap">
+        <div class="tradingview-widget-container">
+            <div class="tradingview-widget-container__widget"></div>
+            <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js" async>
+            {
+                "symbols": [
+                    { "proName": "NYSE:LLY", "title": "Eli Lilly" },
+                    { "proName": "NYSE:NVO", "title": "Novo Nordisk" },
+                    { "proName": "NYSE:ABBV", "title": "AbbVie" },
+                    { "proName": "NYSE:MRK", "title": "Merck" },
+                    { "proName": "NYSE:AZN", "title": "AstraZeneca" },
+                    { "proName": "NYSE:JNJ", "title": "J&J" }
+                ],
+                "showSymbolLogo": true, "colorTheme": "dark", "isTransparent": true, "displayMode": "adaptive", "locale": "en"
+            }
+            </script>
+        </div>
+    </div>
+
+    <nav class="bg-white border-b px-6 py-4 flex justify-between items-center sticky top-0 z-50">
+        <div class="text-2xl font-bold text-slate-900 tracking-tight">BioPulse<span class="text-blue-600">Global</span></div>
+        <div class="space-x-8 hidden md:flex text-sm font-medium text-slate-600">
+            <a href="#" class="hover:text-blue-600">Dashboard</a>
+            <a href="#" class="hover:text-blue-600">Clinical Trials</a>
+            <a href="#" class="hover:text-blue-600">Expert Insight</a>
+        </div>
+        <button class="bg-slate-900 text-white px-5 py-2 rounded-full text-sm font-semibold hover:bg-slate-800">Subscribe</button>
+    </nav>
+
+    <header class="max-w-6xl mx-auto py-16 px-6 text-center">
+        <h1 class="text-5xl font-extrabold text-slate-900 mb-4">Biotech. Amplified.</h1>
+        <p class="text-xl text-slate-500">Live AI-driven intelligence for global biopharma innovation.</p>
+    </header>
+
+    <main class="max-w-6xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-3 gap-12 pb-24">
+        
+        <div class="lg:col-span-2">
+            <h2 class="text-xs font-bold uppercase tracking-widest text-blue-600 mb-6 flex items-center">
+                <span class="w-2 h-2 bg-blue-600 rounded-full mr-2 animate-pulse"></span>
+                Live AI News Feed
+            </h2>
+            <div class="space-y-6">
+                <div class="news-item border-b pb-6 cursor-pointer group">
+                    <span class="text-xs font-bold text-slate-400">MARCH 08, 2026</span>
+                    <h3 class="text-xl font-bold text-slate-900 mt-1 group-hover:text-blue-600">FDA Grants Priority Review for Lilly's Orforglipron in Obesity Care</h3>
+                </div>
+                <div class="news-item border-b pb-6 cursor-pointer group">
+                    <span class="text-xs font-bold text-slate-400">MARCH 07, 2026</span>
+                    <h3 class="text-xl font-bold text-slate-900 mt-1 group-hover:text-blue-600">Bristol Myers Squibb Receives FDA Approval for Sotyktu® in Psoriatic Arthritis</h3>
+                </div>
+                <div class="news-item border-b pb-6 cursor-pointer group">
+                    <span class="text-xs font-bold text-slate-400">MARCH 06, 2026</span>
+                    <h3 class="text-xl font-bold text-slate-900 mt-1 group-hover:text-blue-600">Novo Nordisk Accelerates Scale-up of High-Dose Wegovy Production Lines</h3>
+                </div>
+            </div>
+        </div>
+
+        <div class="space-y-12">
+            <section>
+                <h2 class="text-xs font-bold uppercase tracking-widest text-slate-900 mb-6">Upcoming Milestones</h2>
+                <div class="bg-white border rounded-xl overflow-hidden shadow-sm">
+                    <table class="w-full text-left text-sm">
+                        <thead class="bg-slate-50 border-b">
+                            <tr>
+                                <th class="px-4 py-3">Date</th>
+                                <th class="px-4 py-3">Asset</th>
+                                <th class="px-4 py-3">Event</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y text-slate-600">
+                            <tr>
+                                <td class="px-4 py-3">Mar 16</td>
+                                <td class="px-4 py-3 font-medium">Reproxalap</td>
+                                <td class="px-4 py-3">PDUFA Date</td>
+                            </tr>
+                            <tr>
+                                <td class="px-4 py-3">Mar 24</td>
+                                <td class="px-4 py-3 font-medium">VTX-901</td>
+                                <td class="px-4 py-3">FDA Decision</td>
+                            </tr>
+                            <tr>
+                                <td class="px-4 py-3">Apr 15</td>
+                                <td class="px-4 py-3 font-medium">CagriSema</td>
+                                <td class="px-4 py-3">Phase 3 Readout</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <section class="bg-blue-50 p-6 rounded-2xl border border-blue-100">
+                <h2 class="text-xs font-bold uppercase tracking-widest text-blue-700 mb-3">R&D Expert Insight</h2>
+                <p class="text-slate-700 text-sm leading-relaxed italic">
+                    "The transition from injectable to oral GLP-1 formulations represents a pivotal shift in <strong>bioavailability</strong>. Success hinges on excipient optimization to overcome the gastric degradation barrier—a critical focus for 2026 pipelines."
+                </p>
+                <div class="mt-4 flex items-center">
+                    <div class="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center text-white text-xs font-bold">NV</div>
+                    <div class="ml-3">
+                        <div class="text-xs font-bold text-slate-900">Novarex R&D Team</div>
+                        <div class="text-[10px] text-slate-500">Formulation Specialists</div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="border-t py-12 text-center text-slate-400 text-xs">
+        <p>© 2026 BioPulse Global. All rights reserved. Professional Intelligence for the Biotech Industry.</p>
+    </footer>
+
+</body>
+</html>
