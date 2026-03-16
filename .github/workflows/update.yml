@@ -1,9 +1,7 @@
-name: BioPulse News Auto-Update
+name: BioPulse AI Auto-Update
 on:
   schedule:
-    # '0 * * * *' 대신 '15 * * * *'를 추천합니다. 
-    # 정시(0분)에는 전 세계 로봇이 몰려 딜레이가 생길 수 있거든요.
-    - cron: '15 * * * *' 
+    - cron: '15 * * * *' # 매시 15분마다 실행
   workflow_dispatch:
 
 jobs:
@@ -11,13 +9,22 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: Fetch News
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+      - name: Install dependencies
         run: |
-          curl "https://gnews.io/api/v4/search?q=biotech+pharma&lang=en&token=${{ secrets.GNEWS_API_KEY }}" > news.json
+          pip install requests google-generativeai
+      - name: Run AI Analysis
+        env:
+          GNEWS_API_KEY: ${{ secrets.GNEWS_API_KEY }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: python update_news.py
       - name: Commit and Push
         run: |
-          git config --global user.name "BioPulse-Bot"
+          git config --global user.name "BioPulse-AI-Bot"
           git config --global user.email "bot@biopulseglobal.com"
           git add news.json
-          git commit -m "Update Latest Bio News" || exit 0
+          git commit -m "Update News with AI Analysis" || exit 0
           git push
